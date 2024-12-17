@@ -1,4 +1,4 @@
-public class LineLength {
+public class LineLength implements Comparable<LineLength> {
     private final double x1, y1, x2, y2;
 
     public LineLength(double x1, double y1, double x2, double y2) {
@@ -11,6 +11,12 @@ public class LineLength {
     public double calculateLength() {
         return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
     }
+
+    @Override
+    public int compareTo(LineLength l) {
+        return Double.compare(l.calculateLength(), this.calculateLength());
+    }
+
 
     public static void main(String[] args) {
         LineLength line = new LineLength(1, 2, 4, 6);
@@ -28,6 +34,10 @@ public class LineLength {
         } else {
             System.out.println("The length of the line-1 and line-2 is different");
         }
+
+        // UC-3
+        System.out.println("Implemented Using CompareTo: ");
+        System.out.println(line.compareTo(line2));
 
 
     }
